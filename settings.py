@@ -11,6 +11,7 @@ COMMAND_TO_CHECK_PYINSTALLER_INSTALLED = "pyinstaller --version"
 # Choose the pip you will use to install lost requirements pip or pip3
 MY_PIP = "pip3"
 
+BACKGROUND_IMAGE = "./images/bg.jpg"
 
 # For js
 

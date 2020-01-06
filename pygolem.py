@@ -30,9 +30,9 @@ class PyGolem:
 
     def print_log(self, *args):
         if self.debug_mode:
-            print("[+]", ' '.join(args))
+            print("[+] ", ' '.join(args))
             if self.stxt is not None:
-                self.stxt.insert(self.INSERT, '\n[+]' + ' '.join(args))
+                self.stxt.insert(self.INSERT, '\n[+] ' + ' '.join(args))
 
     def install_libs(self):
         # We install Golem requirements
