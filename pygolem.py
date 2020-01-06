@@ -8,6 +8,11 @@
 
 # 4- it add it to the final command line and execute it
 
+# ----
+# PyGolem class
+# By Sanix-darker
+# ----------------
+
 from settings import *
 from sys import exit
 from os import path as os_path, walk as os_walk, system as ss, remove as os_remove, rmdir as os_rmdir
