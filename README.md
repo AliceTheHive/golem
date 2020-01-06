@@ -13,9 +13,9 @@ This is a quick demo of generating a portable app
 ## Requirements
 
 - Python (3.x recommended)
+- PyInstaller (3.5)
 
 ## How to install
-
 
 
 ## How to use

@@ -20,15 +20,19 @@ from subprocess import Popen, PIPE, STDOUT
 
 
 class PyGolem:
-    def __init__(self, path, app_name="golem_app", debug_mode=True):
+    def __init__(self, path, stxt=None, INSERT=None, app_name="golem_app", debug_mode=True):
         self.app_name = app_name
         self.debug_mode = debug_mode
         self.path = path
         self.array_of_files = self.list_files()
+        self.stxt = stxt
+        self.INSERT = INSERT
 
     def print_log(self, *args):
         if self.debug_mode:
-            print("[+]", args)
+            print("[+]", ' '.join(args))
+            if self.stxt is not None:
+                self.stxt.insert(self.INSERT, '\n[+]' + ' '.join(args))
 
     def install_libs(self):
         # We install Golem requirements
@@ -146,6 +150,8 @@ class PyGolem:
                     self.print_log(the_command)
                     # We do a cd before pyinstaller
                     ss(the_command)
+                    self.print_log("Application successfully generated !!!!!")
+                    self.print_log("-----------------------------------------------")
                 else:
                     self.stop("Stopping, PyInstaller not available !")
             else:
