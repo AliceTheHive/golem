@@ -1,6 +1,10 @@
 # GOLEM
 
-Build your Python's, Js's, PHP's portable executable app on Windows/Linux/Mac in One Click !
+Build your Python's portable executable app on Windows/Linux/Mac in One Click !
+
+## Purpose
+
+I was searching a way to learn well how to use a GUI in python, i choose tkinter for that
 
 ## Quick demo
 
