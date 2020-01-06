@@ -31,6 +31,10 @@ class PyGolem:
         output = proc.communicate()[0].decode('utf-8')
         self.print_log(output)
 
+    def stop(self, reason):
+        self.print_log(reason)
+        exit()
+
     def clean_precedent_exe(self):
         try:
             os_remove(self.path + "/" + self.app_name + ".spec")
@@ -129,7 +133,6 @@ class PyGolem:
 
                     # We build the pyinstaller command
                     the_command = "cd " + self.path + " && " + "pyinstaller main.py "
-                    print("libs_withouth_version: ", all_libs)
                     for ll in all_libs:
                         the_command += " --hidden-import=" + ll.split("==")[0].replace("\n", "") + " "
                     the_command += " --onefile --name " + self.app_name
@@ -139,11 +142,8 @@ class PyGolem:
                     # We do a cd before pyinstaller
                     ss(the_command)
                 else:
-                    self.print_log("Stopping, PyInstaller not available !")
-                    exit()
+                    self.stop("Stopping, PyInstaller not available !")
             else:
-                self.print_log("Stopping, requirements not available !")
-                exit()
+                self.stop("Stopping, requirements not available !")
         else:
-            self.print_log("Stopping, main not available !")
-            exit()
+            self.stop("Stopping, main not available !")

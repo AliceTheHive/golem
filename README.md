@@ -1,6 +1,6 @@
 # GOLEM
 
-Build your python, Js, PHP app to a portable executable on Windows, Linux or Mac in One Click !
+Build your Python's, Js's, PHP's portable executable app on Windows/Linux/Mac in One Click !
 
 ## Quick demo
 
