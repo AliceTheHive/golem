@@ -3,7 +3,6 @@ from tkinter import *
 from tkinter import scrolledtext
 from tkinter import filedialog
 from utils import *
-from settings import *
 
 window = Tk()
 # We set our title
@@ -28,10 +27,14 @@ def choose_project():
     stxt.insert(INSERT, '\n[+] Path selectionned: ' + ''.join(dir))
 
     stxt.insert(INSERT, '\n[+] Start generating the application')
-    # Then generate the application
-    generate_app(dir, "py", stxt, INSERT)
+    try:
+        # Then generate the application
+        generate_app(dir, "py", stxt, INSERT)
+    except:
+        pass
 
 
+#
 # background_image = PhotoImage("./images/bg.jpg")
 # background_label = Label(window, image=background_image)
 # background_label.place(x=0, y=0, relwidth=1, relheight=1)
