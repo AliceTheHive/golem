@@ -2,6 +2,8 @@ import time
 from tkinter import *
 from tkinter import scrolledtext
 from tkinter import filedialog
+# For messageBox
+from tkinter import messagebox
 from utils import *
 
 window = Tk()
@@ -12,10 +14,10 @@ frame = Frame(window)
 frame.pack()
 
 # We can set the size of the window
-window.geometry('650x450')
+window.geometry('500x550')
 
 # We can add a scrolledTextWidget
-stxt = scrolledtext.ScrolledText(window, width=150, height=30, bg='black', fg='white', font=("Arial Bold", 8))
+stxt = scrolledtext.ScrolledText(window, width=150, height=50, bg='black', fg='white', font=("Arial Bold", 7))
 # To empty all the content of the scrolled text, we can use :
 stxt.delete(1.0, END)
 stxt.pack(side=BOTTOM)
@@ -29,9 +31,11 @@ def choose_project():
     stxt.insert(INSERT, '\n[+] Start generating the application')
     try:
         # Then generate the application
-        generate_app(dir, "py", stxt, INSERT)
-    except:
-        pass
+        generate_app(dir, "py", dir.split("/")[-1], stxt, INSERT)
+        # We print the message box to the screen
+        messagebox.showinfo('Golem status', 'Your application have been generated successfully here : \
+                                           ' + dir + '/dist/' + dir.split("/")[-1])
+    except: pass
 
 
 #
@@ -42,7 +46,7 @@ def choose_project():
 
 btn = Button(window, text="Choose your project", bg="blue", fg="white", command=choose_project)
 # We we specify the position of the widget
-btn.pack(side=TOP, pady=50)
+btn.pack(side=TOP, pady=30)
 
 # To insert content, we can use INSERT
 stxt.insert(INSERT, '[+] ---------------')

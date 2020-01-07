@@ -15,24 +15,27 @@
 
 from settings import *
 from sys import exit
-from os import path as os_path, walk as os_walk, system as ss, remove as os_remove, rmdir as os_rmdir
-from subprocess import Popen, PIPE, STDOUT
+from os import path as os_path,system as ss, remove as os_remove, rmdir as os_rmdir, walk as os_walk, chdir as os_chdir
+from os import popen as os_popen
+from subprocess import Popen, PIPE, STDOUT, run
+from threading import Thread
 
 
 class PyGolem:
-    def __init__(self, path, stxt=None, INSERT=None, app_name="golem_app", debug_mode=True):
+    def __init__(self, path, app_name="golem_app", stxt=None, insert=None, debug_mode=True):
         self.app_name = app_name
         self.debug_mode = debug_mode
         self.path = path
         self.array_of_files = self.list_files()
         self.stxt = stxt
-        self.INSERT = INSERT
+        self.INSERT = insert
 
     def print_log(self, *args):
         if self.debug_mode:
-            print("[+] ", ' '.join(args))
             if self.stxt is not None:
                 self.stxt.insert(self.INSERT, '\n[+] ' + ' '.join(args))
+            else:
+                print("[+] ", ' '.join(args))
 
     def install_libs(self):
         # We install Golem requirements
@@ -85,7 +88,7 @@ class PyGolem:
         :param file_name:
         :return:
         """
-        self.print_log("Checking the file ", file_name, " in the ", self.path, "...")
+        self.print_log("Checking ", file_name, " in ", self.path)
 
     def check_main(self):
         """
@@ -128,7 +131,6 @@ class PyGolem:
         # We perform some checkup
         if self.check_main():
             requirements_checks = self.check_requirements()
-            print("requirements_checks: ", requirements_checks)
             if requirements_checks[0]:
                 # Then we proceed
                 all_libs = requirements_checks[1]
@@ -141,7 +143,10 @@ class PyGolem:
                     self.clean_precedent_exe()
 
                     # We build the pyinstaller command
-                    the_command = "cd " + self.path + " && " + "pyinstaller main.py "
+                    # print("self.path: ", self.path)
+                    # os_walk(self.path+"/")
+
+                    the_command = "pyinstaller ./main.py "
                     for ll in all_libs:
                         the_command += " --hidden-import=" + ll.split("==")[0].replace("\n", "") + " "
                     the_command += " --onefile --name " + self.app_name
@@ -149,9 +154,25 @@ class PyGolem:
                     # We execute the command
                     self.print_log(the_command)
                     # We do a cd before pyinstaller
-                    ss(the_command)
-                    self.print_log("Application successfully generated !!!!!")
-                    self.print_log("-----------------------------------------------")
+                    if self.stxt is not None:
+                        # To print the output of the os.system, we print the output in a file
+                        # returned_output = ss(the_command + " > out.tmp")
+                        # returns output as byte string
+                        def exec_pyinstaller():
+                            os_chdir(self.path+"/")
+                            proc = run(the_command, stdout=PIPE, stderr=STDOUT, shell=True, universal_newlines=True)
+                            output = proc.stdout
+                            self.print_log(output)
+                            self.print_log("Application successfully generated !!!!!")
+                            self.print_log("-----------------------------------------------")
+
+                        exec_pyinstaller()
+
+                        # Thread(target=exec_pyinstaller).start()
+                    else:
+                        ss(the_command)
+                        self.print_log("Application successfully generated !!!!!")
+                        self.print_log("-----------------------------------------------")
                 else:
                     self.stop("Stopping, PyInstaller not available !")
             else:

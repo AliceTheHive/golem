@@ -8,7 +8,7 @@ I was searching a way to learn well how to use a GUI in python, i choose tkinter
 
 ## Quick demo
 
-This is a quick demo of generating a portable app
+This is a quick demo of generating a portable app using Golem
 
 ## Requirements
 
