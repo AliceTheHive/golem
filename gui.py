@@ -17,13 +17,13 @@ frame.pack()
 window.geometry('500x550')
 
 # We can add a scrolledTextWidget
-stxt = scrolledtext.ScrolledText(window, width=150, height=50, bg='black', fg='white', font=("Arial Bold", 7))
+stxt = scrolledtext.ScrolledText(window, width=150, height=47, bg='black', fg='white', font=("Arial Bold", 7))
 # To empty all the content of the scrolled text, we can use :
 stxt.delete(1.0, END)
 stxt.pack(side=BOTTOM)
 
 # We can add a textBox
-txt = Entry(window, width=100)  # can also add the disable attribute here , state='disabled'
+txt = Entry(window, width=70)  # can also add the disable attribute here , state='disabled'
 txt.pack(side=TOP, pady=10)
 # We can set the focus on the textBox automatically !
 txt.focus()
@@ -62,7 +62,7 @@ set_text("my_app_name")
 
 btn = Button(window, text="Choose your project", bg="blue", fg="white", command=choose_project)
 # We we specify the position of the widget
-btn.pack(side=TOP, pady=6)
+btn.pack(side=TOP, pady=5)
 
 # To insert content, we can use INSERT
 stxt.insert(INSERT, '[+] ---------------')
