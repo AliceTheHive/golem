@@ -136,7 +136,7 @@ class PyGolem:
                 all_libs = requirements_checks[1]
 
                 # We install all available libs
-                self.install_libs()
+                # self.install_libs()
 
                 if self.pyinstaller_checker():
                     # We perform some cleaning ...
@@ -161,6 +161,8 @@ class PyGolem:
                         # To print the output of the os.system, we print the output in a file
                         # returned_output = ss(the_command + " > out.tmp")
                         # returns output as byte string
+                        self.print_log("Collecting requirements.txt")
+                        self.print_log("This process can take few minutes...")
                         def exec_pyinstaller():
                             proc = run(the_command, stdout=PIPE, stderr=STDOUT, shell=True, universal_newlines=True)
                             output = proc.stdout
@@ -168,9 +170,9 @@ class PyGolem:
                             self.print_log("Application successfully generated !!!!!")
                             self.print_log("-----------------------------------------------")
 
-                        exec_pyinstaller()
+                        # exec_pyinstaller()
 
-                        # Thread(target=exec_pyinstaller).start()
+                        Thread(target=exec_pyinstaller).start()
                     else:
                         ss(the_command)
                         self.print_log("Application successfully generated !!!!!")

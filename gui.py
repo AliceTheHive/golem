@@ -47,7 +47,7 @@ def choose_project():
         # Then generate the application
         generate_app(dir, "py", txt.get(), stxt, INSERT)
         # We print the message box to the screen
-        messagebox.showinfo('Golem status', 'Your application have been generated successfully here : \
+        messagebox.showinfo('Golem status', 'Your application will be generated here : \
                                            ' + dir + '/dist/' + txt.get())
     except: pass
 
