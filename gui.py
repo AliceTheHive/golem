@@ -23,7 +23,7 @@ stxt.delete(1.0, END)
 stxt.pack(side=BOTTOM)
 
 # We can add a textBox
-txt = Entry(window, width=50)  # can also add the disable attribute here , state='disabled'
+txt = Entry(window, width=100)  # can also add the disable attribute here , state='disabled'
 txt.pack(side=TOP, pady=10)
 # We can set the focus on the textBox automatically !
 txt.focus()
