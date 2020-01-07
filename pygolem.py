@@ -1,14 +1,4 @@
-# Core script of Golem
-
-# 1- it check PyInstaller, if not installed, it install it
-
-# 2- it check if a file named main is available in the directory, it will be the entry point
-
-# 3- it loop all file to get all imported externals lbrairies
-
-# 4- it add it to the final command line and execute it
-
-# ----
+# ---------------
 # PyGolem class
 # By Sanix-darker
 # ----------------
