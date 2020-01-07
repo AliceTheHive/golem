@@ -22,19 +22,33 @@ stxt = scrolledtext.ScrolledText(window, width=150, height=50, bg='black', fg='w
 stxt.delete(1.0, END)
 stxt.pack(side=BOTTOM)
 
+# We can add a textBox
+txt = Entry(window, width=50)  # can also add the disable attribute here , state='disabled'
+txt.pack(side=TOP, pady=10)
+# We can set the focus on the textBox automatically !
+txt.focus()
+
+
+def set_text(text):
+    txt.delete(0, END)
+    txt.insert(0, text)
+    return
+
 
 def choose_project():
     # this is a sample for a file chooser
     dir = filedialog.askdirectory()
     stxt.insert(INSERT, '\n[+] Path selectionned: ' + ''.join(dir))
-
     stxt.insert(INSERT, '\n[+] Start generating the application')
     try:
+        if txt.get() == "my_app_name":
+            set_text(dir.split("/")[-1])
+
         # Then generate the application
-        generate_app(dir, "py", dir.split("/")[-1], stxt, INSERT)
+        generate_app(dir, "py", txt.get(), stxt, INSERT)
         # We print the message box to the screen
         messagebox.showinfo('Golem status', 'Your application have been generated successfully here : \
-                                           ' + dir + '/dist/' + dir.split("/")[-1])
+                                           ' + dir + '/dist/' + txt.get())
     except: pass
 
 
@@ -44,9 +58,11 @@ def choose_project():
 # background_label.place(x=0, y=0, relwidth=1, relheight=1)
 #
 
+set_text("my_app_name")
+
 btn = Button(window, text="Choose your project", bg="blue", fg="white", command=choose_project)
 # We we specify the position of the widget
-btn.pack(side=TOP, pady=30)
+btn.pack(side=TOP, pady=6)
 
 # To insert content, we can use INSERT
 stxt.insert(INSERT, '[+] ---------------')
