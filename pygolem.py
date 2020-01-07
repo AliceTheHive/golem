@@ -151,6 +151,9 @@ class PyGolem:
                         the_command += " --hidden-import=" + ll.split("==")[0].replace("\n", "") + " "
                     the_command += " --onefile --name " + self.app_name
 
+                    # We move the execution script to the real path
+                    os_chdir(self.path + "/")
+
                     # We execute the command
                     self.print_log(the_command)
                     # We do a cd before pyinstaller
@@ -159,7 +162,6 @@ class PyGolem:
                         # returned_output = ss(the_command + " > out.tmp")
                         # returns output as byte string
                         def exec_pyinstaller():
-                            os_chdir(self.path+"/")
                             proc = run(the_command, stdout=PIPE, stderr=STDOUT, shell=True, universal_newlines=True)
                             output = proc.stdout
                             self.print_log(output)
