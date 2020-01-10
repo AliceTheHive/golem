@@ -1,6 +1,5 @@
-# Some interesting variables
+# Some settings variables
 
-# For python
 # All of your imported libs external or internals
 IMPORTS_FILE_NAME = "requirements.txt"
 # Your main script/anchor
@@ -12,8 +11,3 @@ COMMAND_TO_CHECK_PYINSTALLER_INSTALLED = "pyinstaller --version"
 MY_PIP = "pip3"
 
 BACKGROUND_IMAGE = "./images/bg.jpg"
-
-# For js
-
-
-# For php

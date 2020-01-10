@@ -1,4 +1,5 @@
 import json
+from os import system as ss
 
 
 def jdump(json_t):

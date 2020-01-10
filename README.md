@@ -60,7 +60,6 @@ Note: The GUI is based on tkinter, make sure to have it installed in your python
 
 <img src="./images/gui_demo.gif" />
 
-
 ## MIT LICENSE
 
 ## Author

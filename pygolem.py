@@ -5,7 +5,7 @@
 
 from settings import *
 from sys import exit
-from os import path as os_path,system as ss, remove as os_remove, rmdir as os_rmdir, walk as os_walk, chdir as os_chdir
+from os import path as os_path, system as ss, remove as os_remove, rmdir as os_rmdir, walk as os_walk, chdir as os_chdir
 from os import popen as os_popen
 from subprocess import Popen, PIPE, STDOUT, run
 from threading import Thread
@@ -153,7 +153,8 @@ class PyGolem:
                         # returns output as byte string
                         self.print_log("Collecting requirements.txt")
                         self.print_log("This process can take few minutes...")
-                        def exec_pyinstaller():
+
+                        def exec_pyinstaller(self):
                             proc = run(the_command, stdout=PIPE, stderr=STDOUT, shell=True, universal_newlines=True)
                             output = proc.stdout
                             self.print_log(output)
@@ -162,7 +163,7 @@ class PyGolem:
 
                         # exec_pyinstaller()
 
-                        Thread(target=exec_pyinstaller).start()
+                        Thread(target=exec_pyinstaller, args=(self,)).start()
                     else:
                         ss(the_command)
                         self.print_log("Application successfully generated !!!!!")

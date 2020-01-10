@@ -1,1 +1,3 @@
+# For Golem to run, you only need Pyinstaller
+
 PyInstaller==3.5

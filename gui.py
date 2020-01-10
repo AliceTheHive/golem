@@ -2,6 +2,7 @@ import time
 from tkinter import *
 from tkinter import scrolledtext
 from tkinter import filedialog
+
 # For messageBox
 from tkinter import messagebox
 from utils import *
@@ -49,7 +50,8 @@ def choose_project():
         # We print the message box to the screen
         messagebox.showinfo('Golem status', 'Your application will be generated here : \
                                            ' + dir + '/dist/' + txt.get())
-    except: pass
+    except Exception as es:
+        print(es)
 
 
 #

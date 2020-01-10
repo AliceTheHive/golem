@@ -6,6 +6,7 @@
 import argparse
 from utils import *
 
+
 if __name__ == '__main__':
     # Initialize the arguments
     # Example of command line : python3 cli.py -p ./test_app -t py
